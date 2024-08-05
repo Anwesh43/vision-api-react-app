@@ -4,7 +4,7 @@ import { ChatCompletionCreateParamsNonStreaming, ChatCompletionMessage } from "o
 const visionApi = (prompt : string) => {
     const openAi = new OpenAI()
     return {
-        async predictImage(str : string) : Promise<ChatCompletionMessage | {"status": "Error"}> {
+        async predictImage(str : string) : Promise<string> {
             try {
                 const input : ChatCompletionCreateParamsNonStreaming = {
                     model: 'gpt-4o-mini',
@@ -25,11 +25,9 @@ const visionApi = (prompt : string) => {
                     ]
                 }
                 const response = await openAi.chat.completions.create(input)
-                return response.choices[0].message
+                return response.choices[0].message.content || ''
             } catch(e) {
-                return  {
-                    "status": "Error"
-                }
+                return  "error"
             }
         }
     }
