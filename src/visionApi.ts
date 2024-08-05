@@ -2,7 +2,7 @@ import OpenAI from "openai"
 import { ChatCompletionCreateParamsNonStreaming, ChatCompletionMessage } from "openai/resources"
 
 const visionApi = (prompt : string) => {
-    const openAi = new OpenAI()
+    const openAi = new OpenAI({apiKey: process.env.REACT_APP_OPEN_AI_KEY, dangerouslyAllowBrowser: true})
     return {
         async predictImage(str : string) : Promise<string> {
             try {
@@ -17,7 +17,7 @@ const visionApi = (prompt : string) => {
                                 },
                                 {
                                     "type": "image_url", image_url: {
-                                        url: `data:image/jpeg;base64,${str}`
+                                        url: `${str}`
                                     }
                                 }
                             ]
