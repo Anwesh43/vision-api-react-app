@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import visionApi from './visionApi';
-import { ChatCompletion } from 'openai/resources';
 
 function App() {
   const visionApiObj = visionApi("What is this image about?")
