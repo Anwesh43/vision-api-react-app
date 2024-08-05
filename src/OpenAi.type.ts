@@ -11,11 +11,16 @@
 //     ],
 //   },
 
+import { Image } from "openai/resources"
 
+
+interface ImageUrl {
+  url : string
+}
 export  interface MessageContent {
-  type: "user"|"image_url", 
+  type: "text"|"image_url", 
   text?: string,
-  image_url?: string
+  image_url?: Image
 }
 
 export interface Message {
@@ -25,5 +30,6 @@ export interface Message {
 
 
 export interface OpenAIInput {
-  message : Message 
+  model: string,
+  messages : Message[]
 }
